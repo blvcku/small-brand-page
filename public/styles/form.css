@@ -1,0 +1,142 @@
+
+/*
+    ----------------------
+    FORM STYLES
+    ----------------------
+*/
+
+#contact{
+    display:flex;
+    justify-content:center;
+    margin:5rem 1rem;
+}
+#contact header{
+    text-align: center;
+    font-size:clamp(1.3em, 4vw, 2.5em);
+    font-family: 'Montserrat', sans-serif;
+    font-weight:800;
+    padding-bottom:20px;
+    line-height:1.2;
+}
+.form{
+    background-color:#fff;
+    border-radius:10px;
+    padding:2rem;
+    box-shadow: 
+    0 14px 28px rgba(0,0,0,0.25), 
+	0 10px 10px rgba(0,0,0,0.22);
+}
+.form-validation{
+    width:100%;
+    display:inline-block;
+    position: relative;
+}
+.input-wrapper{
+    position:relative;
+}
+.form-validation i{
+    font-size:clamp(1em, 2vw, 1.2em);
+    color:red;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    right:10px;
+    visibility: hidden;
+}
+.error{
+    color:red;
+    font-size:clamp(.8em, 2vw, 1em);
+    font-family: 'Montserrat', sans-serif;
+    font-weight:400;
+    right:10px;
+    bottom:5px;
+    position: absolute;
+}
+.success{
+    color:limegreen;
+    font-size:clamp(.8em, 2vw, 1em);
+    font-family: 'Montserrat', sans-serif;
+    font-weight:400;
+    text-align: center;
+    bottom:-8px;
+    width:100%;
+    position: absolute;
+    visibility: hidden;
+}
+.success.active{
+    visibility: visible;
+}
+@media (min-width:280px){
+    .success{
+        bottom:0px;
+    }
+}
+#email, #message{
+    display:block;
+    width:100%;
+    padding:.5em .5em;
+    margin:.5em 0 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:400;
+    font-size:clamp(1em, 2vw, 1.1em);
+    border:2px solid black;
+    color:var(--fourthcolor);
+    outline:none;
+}
+.form-validation.invalid i{
+    visibility: visible;
+}
+.form-validation.invalid #email, .form-validation.invalid #message{
+    border-color:red;
+}
+#contact label{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:400;
+    font-size:clamp(1em, 2vw, 1.2em);
+    margin-left:.3em;
+    background-color:#fff;
+    display:inline-block;
+    padding:0 3px;
+    transition: transform .2s ease;
+    position:relative;
+    z-index:1;
+}
+label.active{
+    transform:translateY(1em);
+}
+#submit{
+    margin-top:1vh;
+    padding:10px 20px;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(1em, 2vw, 1.4em);
+    cursor:pointer;
+    transition: all .8s ease, transform .2s ease;
+    background-color:var(--thirdcolor);
+    border-radius:66px;
+    color:#fff;
+    border:none;
+    transform:translateX(-50%) scale(1);
+}
+.submit-value{
+    position:relative;
+}
+.submit-value::before{
+    content:'Submit';
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    overflow:hidden;
+    color:black;
+    transition: width .8s ease;
+}
+#submit:hover .submit-value::before, #submit:focus .submit-value::before{
+    width:100%;
+}
+#submit:active{
+    transform:translateX(-50%) scale(0.95);
+}

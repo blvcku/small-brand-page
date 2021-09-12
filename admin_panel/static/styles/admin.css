@@ -1,0 +1,92 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    min-height:100vh;
+    background: #f6f5f7;
+}
+main{
+    background-color:#fff;
+    text-align:center;
+    margin:1rem 1rem;
+    box-shadow: 
+    0 14px 28px rgba(0,0,0,0.25), 
+	0 10px 10px rgba(0,0,0,0.22);
+    border-radius:10px;
+    padding:2.5rem 0;
+}
+header{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(2em, 8vw, 3em);
+    margin-bottom:4vh;
+}
+form{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    'label input'
+    'submit submit';
+    align-items:center;
+    text-align: center;
+    margin:0 1.5rem;
+    grid-row-gap:clamp(2rem, 3vh, 2.5rem);
+}
+#submit{
+    grid-area: submit;
+    justify-self: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(.8em, 4vw, 1.3em);
+    padding:.7rem 1.5rem;
+    background-color:#a3c78d;
+    color:#fff;
+    border-radius:66px;
+    border:none;
+    transition:transform .2s ease;
+    cursor:pointer;
+}
+#submit:active{
+    transform:scale(0.95);
+}
+#password{
+    grid-area:input;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:400;
+    font-size:clamp(.8em, 4vw, 1.3em);
+    margin-left:.6rem;
+    background-color:#f0f0f0;
+    padding:.5rem;
+    border:none;
+}
+#password-label{
+    grid-area:label;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+#password-label i{
+    font-size:clamp(1.2em, 6vw, 1.6em);
+}
+.error{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size:clamp(.6em, 3vw, 1.1em);
+    bottom:-60%;
+    color:red;
+    visibility: hidden;
+}
+.form.invalid .error{
+    visibility: visible;
+}
+.form.invalid #password{
+    border: 2px solid red;
+}
