@@ -67,3 +67,27 @@ aboutUsInformations.forEach(information => {
 })
 
 aboutUsObserver.observe(aboutUsHeader);
+
+
+//Presentation observer
+
+const presentationTexts = document.querySelectorAll('.presentation-text');
+
+const presentationOptions = {
+    threshold: 1,
+    rootMargin: '0px 0px 400px 0px'
+}
+
+const presentationObserver = new IntersectionObserver(function(entries, presentationObserver){
+    entries.forEach(entry => {
+        if(!entry.isIntersecting){
+            return;
+        }
+        entry.target.classList.add('appear');
+        presentationObserver.unobserve(entry.target);
+    })
+}, presentationOptions);
+
+presentationTexts.forEach(text => {
+    presentationObserver.observe(text);
+})

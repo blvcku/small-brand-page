@@ -284,7 +284,10 @@ main p{
 }
 #second-presentation-element{
     background-color:var(--thirdcolor);
-    color:white;
+    color:#fff;
+}
+#second-presentation-element .presentation-text header{
+    color:#fff;
 }
 #second-presentation-element .presentation-content{
     flex-direction: row-reverse;
@@ -302,20 +305,36 @@ main p{
     padding: 3rem 1rem;
     gap:2em;
     font-family: 'Montserrat', sans-serif;
-    font-weight:400;
-    font-size:clamp(1em, 2vw, 1.2em);
 }
 .presentation-image{
     width:100%;
     max-width:550px;
     height:auto;
 }
-.presentation-content p{
+.presentation-text{
     display:flex;
-    align-items:center;
+    justify-content: center;
     flex:1;
     max-width:60ch;
     min-width:40%;
+    flex-direction:column;
+    transform:translateY(100%);
+    opacity:0;
+    transition: transform 1.5s ease, opacity 2.5s ease;
+}
+.presentation-text.appear{
+    transform:translateY(0);
+    opacity:1;
+}
+.presentation-text header{
+    font-weight:800;
+    font-size:clamp(1.1em, 3vw, 1.7em);
+    color:black;
+}
+.presentation-text p{
+    font-weight:400;
+    font-size:clamp(1em, 2vw, 1.2em);
+    margin-top:.5rem;
 }
 /*
     ----------------------
