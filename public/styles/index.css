@@ -63,49 +63,75 @@ main p{
     from{transform:translateY(100%);opacity:0;}
     to{transform:translateY(0);opacity:1;}
 }
-.jump-button{
-    background-color:#fff;
-    display: inline-block;
+.scroll-button-link{
+    background-color:transparent;
     position:absolute;
     bottom:10px;
     left:50%;
     transform:translateX(-50%);
-    width:4.5em;
-    height:4.5em;
-    border-radius: 50%;
+    width:max-content;
+    height:max-content;
     cursor:pointer;
     overflow:hidden;
     border:none;
-    color:black;
-    transition:color .8s ease;
+    padding:1rem;
+    box-sizing: content-box;
+    animation: scroll-button-animation 3s cubic-bezier(.22,.04,.48,1.65) infinite;
 }
-.jump-button i{
+.scroll-button-icon{
+    --borderwidth: 3px;
+    position:relative;
+    display:block;
+    border-radius:100px;
+    width:2.5rem;
+    height:3.5rem;
+    border:var(--borderwidth) solid var(--fourthcolor);
+    transition: border-color .8s ease;
+}
+.scroll-button-icon::before{
     position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-}
-.jump-button::after{
     content:'';
-    position:absolute;
-    background-color:var(--thirdcolor);
-    width:0;
-    height:0;
-    z-index: -1;
+    width:15%;
+    height:20%;
+    background-color:var(--fourthcolor);
+    border-radius:5px;
     left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
-    border-radius:66px;
-    transition: all .8s ease;
+    top:20%;
+    transform:translateX(-50%);
+    transition: background-color .8s ease;
+    animation: scroll-icon-animation 3s cubic-bezier(.22,.04,.48,1.65) infinite;
 }
-.jump-button:hover, .jump-button:focus{
-    color:white;
+.scroll-button-link:hover .scroll-button-icon{
+    border-color:var(--firstcolor);
 }
-.jump-button:hover::after, .jump-button:focus::after{
-    width:100%;
-    height:100%;
+.scroll-button-link:hover .scroll-button-icon::before{
+    background-color:var(--firstcolor);
 }
-
+@keyframes scroll-button-animation{
+    50%{
+        transform:translateX(-50%) translateY(0);
+    }
+    75%{
+        transform:translateX(-50%) translateY(-25%);
+    }
+    100%{
+        transform:translateX(-50%) translateY(0);
+    }
+}
+@keyframes scroll-icon-animation{
+    75%{
+        transform:translateX(-50%) translateY(0);
+        height:20%;
+    }
+    88%{
+        transform:translateX(-50%) translateY(50%);
+        height:18%;
+    }
+    100%{
+        transform:translateX(-50%) translateY(0);
+        height:20%;
+    }
+}
 /*
     ----------------------
     ABOUT US SECTION
@@ -158,7 +184,7 @@ main p{
     margin:2rem;
     transform:translateY(-1rem);
     opacity:0;
-    transition:transform 1.5s ease, opacity 1.5s ease;
+    transition:transform 1.5s ease, opacity 2.5s ease;
 }
 .about-us-information.appear{
     transform:translateY(0);
@@ -211,6 +237,7 @@ main p{
     position:relative;
     text-align:center;
     min-height:15rem;
+    overflow-x:hidden;
 }
 .project-header{
     font-size:clamp(1.1em, 3vw, 1.7em);
@@ -230,13 +257,14 @@ main p{
     margin-top:2rem;
     margin-bottom:4.5rem;
     color:var(--fourthcolor);
-    transform:translateY(-2rem);
     opacity:0;
-    transition: transform 1.5s ease, opacity 1.5s ease;
 }
 .project-description.appear{
-    transform:translateY(0);
-    opacity:1;
+    animation: description-appear 1.5s cubic-bezier(.47,-0.22,.48,1.27) forwards;
+}
+@keyframes description-appear{
+    from{transform:translateX(-100%); opacity:0;}
+    to{transform:translateX(0); opacity:1;}
 }
 .project-button{
     background-color:var(--thirdcolor);
