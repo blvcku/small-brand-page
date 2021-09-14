@@ -75,7 +75,7 @@ const presentationTexts = document.querySelectorAll('.presentation-text');
 
 const presentationOptions = {
     threshold: 1,
-    rootMargin: '0px 0px 400px 0px'
+    rootMargin: '0px 0px 60% 0px'
 }
 
 const presentationObserver = new IntersectionObserver(function(entries, presentationObserver){

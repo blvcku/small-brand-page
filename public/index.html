@@ -14,14 +14,40 @@
 </head>
 <body>
     <section id="main-section">
-        <main>
-            <header>Welcome to this cool website</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, natus libero.</p>
-        </main>
-            <a href="#about-us" class="scroll-button-link">
-                <span class='scroll-button-icon'>
-                </span>
-            </a>
+        <div class="carousel-container">
+            <div class="slide active">
+                <img class='slide-image' src="images/mainimage.jpg" alt="Landscape image">
+            </div>
+            <div class="slide">
+                <img class='slide-image' src="images/mainimage2.jpg" alt="Landscape image">
+            </div>
+            <div class="slide">
+                <img class='slide-image' src="images/mainimage3.jpg" alt="Landscape image">
+            </div>
+            <div class="content-container active">
+                <header class="slide-header">Lorem, ipsum.</header>
+                <i class='slide-line'></i>
+                <p class="slide-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, amet unde illum sit officiis deleniti.</p>
+            </div>
+            <div class="content-container">
+                <header class="slide-header">Lorem, ipsum.</header>
+                <i class='slide-line'></i>
+                <p class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam rerum, blanditiis placeat dolorum quos suscipit nulla veritatis non iste cupiditate.</p>
+            </div>
+            <div class="content-container">
+                <header class="slide-header">Lorem, ipsum.</header>
+                <i class='slide-line'></i>
+                <p class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta maxime, at eum labore explicabo ullam consequuntur pariatur doloremque!</p>
+            </div>
+            <ol class='carousel-indicators'>
+                <li data-index='0' class='carousel-indicator active'></li>
+                <li data-index='1' class='carousel-indicator'></li>
+                <li data-index='2' class='carousel-indicator'></li>
+            </ol>
+        </div>
+        <a href="#about-us" class="scroll-button-link">
+            <span class='scroll-button-icon'></span>
+        </a>
     </section>
 
     <section id='about-us'>
@@ -133,5 +159,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js" integrity="sha512-DlTk2PLUinhBupE89kHOJTt11QqbRMQVlbb26XVDvp4D1kt0fRvQJslvZnTelRJHq6yK0tIPCR7cul8+9Blz0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/form.js"></script>
     <script src='scripts/scrolleffects.js'></script>
+    <script src='scripts/carousel.js'></script>
 </body>
 </html>

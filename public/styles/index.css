@@ -17,51 +17,141 @@ body{
 
 /*
     ----------------------
-    MAIN SCREEN / WELCOME SCREEN
+        MAIN SECTION
     ----------------------
 */
 
 #main-section{
     height:100vh;
-    background-image:url('../images/mainimage.jpg');
-    background-size:cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    position:relative;
 }
-main{
-    height:75%;
+.carousel-container{
+    width:100%;
+    height:100%;
+
+}
+.carousel-indicators{
     display:flex;
-    align-items:center;
-    justify-content: center;
+    list-style:none;
     flex-direction: column;
-    text-align: center;
-    gap:10px;
-    padding: 20vh 2vw;
+    height:100%;
+    padding:0;
+    float:right;
+    justify-content: center;
+    position:relative;
+    z-index:100;
 }
-main header{
-    font-size:clamp(1.3em, 4vw, 3em);
+.carousel-indicator{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background-color:transparent;
+    border:2px solid var(--fourthcolor);
+    margin:.2rem .4rem;
+    cursor:pointer;
+}
+.carousel-indicator.active{
+    background-color: var(--fourthcolor);
+}
+.slide{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display:none;
+    clip-path: inset(0);
+    overflow:hidden;
+}
+.slide::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:var(--thirdcolor);
+    width:100%;
+    height:100%;
+    z-index:50;
+}
+.slide-image{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    position:fixed;
+}
+.slide.active{
+    display:block;
+}
+.slide.active::before{
+    animation: slide-animation .8s ease-in forwards;
+}
+@keyframes slide-animation{
+    from{transform:translateX(0);}
+    to{transform:translateX(100%);}
+}
+.content-container{
+    position:absolute;
+    z-index:200;
+    max-width:70ch;
+    margin-left:2rem;
+    margin-right:6rem;
+    top:50%;
+    transform:translateY(-50%) translateX(3rem);
+    opacity:0;
+    transition: transform .8s ease, opacity .8s ease;
+}
+.content-container::before, .content-container::after{
+    content:'';
+    position:absolute;
+    width:30px;
+    height:30px;
+    background-color:transparent;
+}
+.content-container::before{
+    left:-25px;
+    bottom:-25px;
+    border-left:4px solid #fff;
+    border-bottom:4px solid #fff;
+}
+.content-container::after{
+    right:-10px;
+    top:-10px;
+    border-right:4px solid #fff;
+    border-top:4px solid #fff;
+}
+.content-container.active{
+    opacity:1;
+    transform:translateY(-50%) translateX(0);
+}
+@media (min-width:700px){
+    .content-container{
+        margin-left:15vw;
+        transform:translateY(-50%) translateX(3rem);
+        max-width:50ch;
+    }
+}
+.slide-header{
+    font-size:clamp(1.1em, 3vw, 1.7em);
     font-family: 'Montserrat', sans-serif;
     font-weight:800;
     color:black;
-    animation: welcome-header-animation 1s ease forwards;
-    opacity:0;
-    line-height:1;
 }
-main p{
-    opacity:0;
-    font-size:clamp(1em, 2vw, 1.5em);
+.slide-line{
+    height:1px;
+    background-color: red;
+    transition: width .8s ease;
+    display:block;
+    margin:.5rem 0 1rem;
+    width:0;
+}
+.content-container.active .slide-line{
+    width:15ch;
+}
+.slide-text{
+    font-size:clamp(1em, 2vw, 1.2em);
     font-family: 'Montserrat', sans-serif;
     font-weight:400;
-    color:var(--fourthcolor);
-    animation: welcome-p-animation 1s ease forwards .5s;
-}
-@keyframes welcome-header-animation{
-    from{transform:translateY(-100%); opacity:0;}
-    to{transform:translateY(0); opacity:1;}
-}
-@keyframes welcome-p-animation{
-    from{transform:translateY(100%);opacity:0;}
-    to{transform:translateY(0);opacity:1;}
+    color:black;
 }
 .scroll-button-link{
     background-color:transparent;
@@ -140,7 +230,6 @@ main p{
 
 #about-us{
     background-color:var(--thirdcolor);
-    padding: 2rem 0;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -148,13 +237,14 @@ main p{
 }
 
 .about-us-header{
-    font-size:clamp(2em, 6vw, 3em);
+    font-size:clamp(1.3em, 4vw, 2.5em);
     font-family: 'Montserrat', sans-serif;
     font-weight:800;
     color: var(--firstcolor);
     width: max-content;
     position:relative;
     line-height:1;
+    margin-top:2rem;
 }
 .about-us-header::before, .about-us-header::after{
     content:'';
@@ -174,17 +264,18 @@ main p{
     width:60%;
 }
 .about-us-informations{
-    margin-top:2rem;
+    margin: 1rem 2rem 4rem;
 }
 .about-us-information{
     font-size:clamp(1em, 2vw, 1.2em);
     font-family: 'Montserrat', sans-serif;
     font-weight:400;
     color:#fff;
-    margin:2rem;
     transform:translateY(-1rem);
     opacity:0;
     transition:transform 1.5s ease, opacity 2.5s ease;
+    max-width:50ch;
+    margin-top:2rem;
 }
 .about-us-information.appear{
     transform:translateY(0);
@@ -195,6 +286,11 @@ main p{
         display:grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows:1fr;
+        gap:2rem;
+        margin: 4rem 2rem 4rem;
+    }
+    .about-us-information{
+        margin-top:0;
     }
 }
 
@@ -214,7 +310,7 @@ main p{
     gap:3rem;
 }
 .our-projects-header{
-    font-size:clamp(2em, 6vw, 3em);
+    font-size:clamp(1.3em, 4vw, 2.5em);
     font-family: 'Montserrat', sans-serif;
     font-weight:800;
     color: black;
@@ -290,7 +386,7 @@ main p{
     color:#fff;
     font-size:2em;
 }
-@media (min-width:800px){
+@media (min-width:1000px){
     .projects{
         display:flex;
     }
@@ -309,6 +405,9 @@ main p{
 #first-presentation-element{
     background-color:var(--firstcolor);
     color:var(--fourthcolor);
+}
+#first-presentation-element .presentation-image{
+    transform:translateX(-20%);
 }
 #second-presentation-element{
     background-color:var(--thirdcolor);
@@ -331,7 +430,6 @@ main p{
     justify-content:center;
     min-height:100%;
     padding: 3rem 1rem;
-    gap:2em;
     font-family: 'Montserrat', sans-serif;
 }
 .presentation-image{
@@ -419,7 +517,7 @@ main p{
 
 #free-space{
     min-height:30rem;
-    background-image:url('../images/mainimage.jpg');
+    background-image:url('../images/mainimage2.jpg');
     background-size:cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
