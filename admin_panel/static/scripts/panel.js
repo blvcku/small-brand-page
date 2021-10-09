@@ -12,46 +12,47 @@ window.onload = () => {
         throw Error('Invalid token');
     }).then(messages =>{
         if(messages.length === 0){
-            const emptyInformation = document.createElement('p');
-            emptyInformation.className = 'empty-information';
-            emptyInformation.append(`There is: ${messages.length} messages`);
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <p class='empty-information'>
+                    There is: ${messages.length} messages
+                </p>
+            `;
+            const fragment = document.createDocumentFragment();
+            fragment.appendChild(div);
             container.classList.add('empty');
-            slide.append(emptyInformation);
+            slide.append(fragment);
             return;
         }
-        for(let i = 0; i < messages.length; i++){
+        messages.forEach(({email, message, createdAt}) => {
+            const date = new Date(createdAt) 
             const messageContainer = document.createElement('div');
             messageContainer.className = 'message';
-            const header = document.createElement('header');
-            const br = document.createElement('br');
-            header.append('From:', br, messages[i].email);
-            const createdAt = new Date(messages[i].createdAt);
-            const br2 = document.createElement('br');
-            const date = document.createElement('p');
-            date.className = 'date';
-            date.append(createdAt.toLocaleDateString(), br2, createdAt.toLocaleTimeString());
-            const message = document.createElement('p');
-            message.className = 'text';
-            message.append(messages[i].message);
-            messageContainer.append(header, message, date);
-            slide.append(messageContainer);
-        }
+            messageContainer.innerHTML = `
+                <header>From:<br>${email}</header>
+                <p class='text'>${message}</p>
+                <p class='date'>
+                    ${date.toLocaleTimeString()}<br>${date.toLocaleDateString()}
+                <p>
+            `;
+            slide.appendChild(messageContainer);
+        })
         if(messages.length > 1){
-            const prevButton = document.createElement('button');
-            prevButton.className = 'prev-button slide-button hide';
-            const prevButtonIcon = document.createElement('i');
-            prevButtonIcon.className = 'fas fa-angle-left';
-            prevButton.append(prevButtonIcon);
-            const nextButton = document.createElement('button');
-            nextButton.className = 'next-button slide-button';
-            const nextButtonIcon = document.createElement('i');
-            nextButtonIcon.className = 'fas fa-angle-right';
-            nextButton.append(nextButtonIcon);
-            nextButton.addEventListener('click', handleNextButton);
-            prevButton.addEventListener('click', handlePrevButton);
-            prevBtn = prevButton;
-            nextBtn = nextButton;
-            container.append(prevButton, nextButton);
+            const template = document.createElement('template');
+            template.innerHTML = `
+                <button type='button' class='prev-button slide-button hide'>
+                    <i class='fas fa-angle-left'></i>
+                </button>
+                <button type='button' class='next-button slide-button'>
+                    <i class='fas fa-angle-right'></i>
+                </button>
+            `;
+            const fragment = template.content;
+            container.appendChild(fragment);
+            prevBtn = document.querySelector('.prev-button');
+            nextBtn = document.querySelector('.next-button');
+            prevBtn.addEventListener('click', handlePrevButton);
+            nextBtn.addEventListener('click', handleNextButton);
         }
     }).catch(error => {
         window.location.replace('/admin');

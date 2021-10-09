@@ -22,7 +22,7 @@ const sendData = (password) => {
         }
         throw Error('Invalid password');
     }).then(res => {
-        window.location.replace('admin/panel');
+        window.location.replace('/admin/panel');
     }).catch(error => {
         form.classList.add('invalid');
     })

@@ -8,7 +8,7 @@ Message.init({
         type: DataTypes.STRING
     },
     message:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING(3000)
     }
 }, {
     sequelize,
