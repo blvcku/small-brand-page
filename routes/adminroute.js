@@ -24,7 +24,7 @@ router.get('/panel', verifyToken, (req, res) => {
 })
 
 router.get('/panel/messages', verifyToken, async (req, res) => {
-    const messages = await Message.find();
+    const messages = await Message.findAll();
     res.send(messages);
 })
 

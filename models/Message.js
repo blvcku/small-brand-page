@@ -1,16 +1,18 @@
-const mongoose = require('mongoose');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../dbconnect');
 
-const messageSchema = new mongoose.Schema({
-    email: {
-        type: String
+class Message extends Model{}
+
+Message.init({
+    email:{
+        type: DataTypes.STRING
     },
-    message: {
-        type: String
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    } 
+    message:{
+        type: DataTypes.STRING
+    }
+}, {
+    sequelize,
+    modelName: 'message'
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = Message;

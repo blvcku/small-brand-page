@@ -1,16 +1,8 @@
-const mongoose = require('mongoose');
+const { Sequelize } = require('sequelize');
 
-const connectToDatabase = async () => {
-    try {
-      await mongoose.connect(
-          process.env.DB_URL, { useNewUrlParser: true }, () => {
-              console.log('Connected to database')
-          } 
-      );
-    }
-    catch(error){
-      console.log('ERROR: ' + error);
-    }
-}
+const sequelize = new Sequelize('messages', 'admin', process.env.DB_PASSWORD, {
+    dialect: 'sqlite',
+    host: './messages.sqlite'
+});
 
-module.exports = connectToDatabase;
+module.exports = sequelize;

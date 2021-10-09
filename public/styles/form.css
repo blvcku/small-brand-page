@@ -82,6 +82,7 @@
     border:2px solid black;
     color:var(--fourthcolor);
     outline:none;
+    resize: none;
 }
 .form-validation.invalid i{
     visibility: visible;
