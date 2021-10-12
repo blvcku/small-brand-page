@@ -54,7 +54,7 @@ body{
     overflow-y:auto;
     overflow-x:hidden;
 }
-.message header{
+.message h1{
     font-family: 'Montserrat', sans-serif;
     font-weight:800;
     font-size:clamp(.9em, 4vw, 1.6em);

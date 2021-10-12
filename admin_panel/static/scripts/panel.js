@@ -29,7 +29,7 @@ window.onload = () => {
             const messageContainer = document.createElement('div');
             messageContainer.className = 'message';
             messageContainer.innerHTML = `
-                <header>From:<br>${email}</header>
+                <h1>From:<br>${email}</h1>
                 <p class='text'>${message}</p>
                 <p class='date'>
                     ${date.toLocaleTimeString()}<br>${date.toLocaleDateString()}

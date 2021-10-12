@@ -452,7 +452,7 @@ body{
     transform:translateY(0);
     opacity:1;
 }
-.presentation-text header{
+.presentation-text h1{
     font-weight:800;
     font-size:clamp(1.1em, 3vw, 1.7em);
     color:black;
@@ -542,7 +542,7 @@ body{
 #free-space::after{
     bottom:0;
 }
-#free-space header{
+#free-space h1{
     color:#fff;
     font-family: 'Montserrat', sans-serif;
     font-weight:800;
